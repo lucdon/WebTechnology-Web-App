@@ -1,30 +1,51 @@
+const Webpack = require("webpack");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = (env) => {
     return merge([
         {
             context: __dirname + "/../",
             devServer: {
-                contentBase: './dist',
+                contentBase: "./dist",
                 historyApiFallback: true
             },
-            entry: "./webpack/webpack.entry.js",
+            devtool: "cheap-module-source-map",
+            entry: {
+                client: "./webpack/webpack.entry.js",
+                vendor: [
+                    "react",
+                    "react-dom",
+                    "react-redux",
+                    "react-router-dom",
+                    "react-router-redux",
+                    "axios",
+                    "redux",
+                    "redux-thunk",
+                    "redux-logger",
+                    "redux-promise-middleware"
+                ]
+            },
             output: {
-                filename: "js/client.bundle.js",
+                filename: "js/[name].[chunkhash].js",
                 path: __dirname + "/../dist/",
                 publicPath: "/"
             },
             plugins: [
-                new ExtractTextPlugin("css/client.bundle.css"),
+                new ExtractTextPlugin("css/[name].[chunkhash].css"),
                 new CopyWebpackPlugin([
                     {
                         from: "wwwroot/favicon.ico",
                         to: "favicon.ico"
                     }
                 ]),
+                new Webpack.HashedModuleIdsPlugin(),
+                new Webpack.optimize.CommonsChunkPlugin({name: 'vendor'}),
+                new Webpack.optimize.CommonsChunkPlugin({name: "manifest"}),
+                new CleanWebpackPlugin(["dist"], {root: "D:/User Files/Documents/Projects/Coding/Web JS/Web Technology Web App"}),
                 new HtmlWebpackPlugin({template: "wwwroot/index-dev.html"})
             ],
             stats: {

@@ -1,34 +1,54 @@
+const Webpack = require("webpack");
 const merge = require("webpack-merge");
 const MinifyPlugin = require("babel-minify-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = (env) => {
     return merge([
         {
             context: __dirname + "/../",
-            entry: "./webpack/webpack.entry.js",
+            entry: {
+                client: "./webpack/webpack.entry.js",
+                vendor: [
+                    "react",
+                    "react-dom",
+                    "react-redux",
+                    "react-router-dom",
+                    "react-router-redux",
+                    "axios",
+                    "redux",
+                    "redux-thunk",
+                    "redux-logger",
+                    "redux-promise-middleware"
+                ]
+            },
             output: {
-                filename: "js/client.bundle.js",
-                path: __dirname + "/../../WebTech-Website-Deploy/WebTech-Webapp-Deploy/"
+                filename: "js/[name].[chunkhash].js",
+                path: __dirname + "/../../WebTech-Website-Deploy/WebTech-Webapp-Deploy/dist"
             },
             plugins: [
-                new ExtractTextPlugin("css/client.bundle.css"),
+                new ExtractTextPlugin("css/[name].[chunkhash].css"),
                 new CopyWebpackPlugin([
                     {
                         from: "wwwroot/favicon.ico",
-                        to: "favicon.ico"
+                        to: "../favicon.ico"
                     }
                 ]),
+                new Webpack.HashedModuleIdsPlugin(),
+                new Webpack.optimize.CommonsChunkPlugin({name: 'vendor'}),
+                new Webpack.optimize.CommonsChunkPlugin({name: "manifest"}),
+                new CleanWebpackPlugin(["dist"], {root: "D:/User Files/Documents/Projects/Coding/Web JS/WebTech-Website-Deploy/WebTech-Webapp-Deploy"}),
                 new CopyWebpackPlugin([
                     {
-                        from: "404.html",
-                        to: "404.html"
+                        from: "wwwroot/404.html",
+                        to: "../404.html"
                     }
                 ]),
                 new MinifyPlugin(),
-                new HtmlWebpackPlugin({template: "wwwroot/index.html"})
+                new HtmlWebpackPlugin({template: "wwwroot/index.html", filename: '../index.html'})
             ],
             stats: {
                 children: false

@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter, Route} from "react-router-dom";
-import Navigation from "./client.jsx";
-import Home from "./../app/Home.jsx";
+import Navigation from "client";
+import Home from "Home";
 
 export default class Router extends React.Component {
 
@@ -19,9 +19,3 @@ export default class Router extends React.Component {
         );
     }
 }
-/*
-                        <Route></Route>
-                        <Route exact path={Navigation} component={Home}></Route>
-                        <Route path={Navigation + "about"} component={About}></Route>
-                        <Route></Route>
-*/

@@ -13,4 +13,4 @@ function requireAll(r) {
 }
 
 //Include client.jsx which is the starting point in the app
-import "../client/client.jsx";
+import "client";

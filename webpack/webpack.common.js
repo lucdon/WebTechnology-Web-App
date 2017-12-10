@@ -1,4 +1,6 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
+const path = require("path");
 const merge = require("webpack-merge");
 
 module.exports = (env) => {
@@ -75,6 +77,15 @@ module.exports = (env) => {
                         ]
                     }
                 ]
+            },
+            resolve: {
+                extensions: [
+                    ".js", ".jsx"
+                ],
+                modules: [
+                    "app", "client", "components", "node_modules"
+                ],
+                plugins: [new DirectoryNamedWebpackPlugin({exclude: /node_modules/})]
             }
         }
     ]);
