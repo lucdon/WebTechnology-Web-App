@@ -1,0 +1,11 @@
+wwwroot/
+dist/
+node_modules/
+*.log
+*.tmp
+.sass-cache/
+__pycache__/
+*.pyc
+package-lock.json
+.vscode/
+start.bat
