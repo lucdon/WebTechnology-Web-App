@@ -22,7 +22,14 @@ module.exports = (env) => {
                     "redux",
                     "redux-thunk",
                     "redux-logger",
-                    "redux-promise-middleware"
+                    "redux-promise-middleware",
+                    "jquery",
+                    "bootstrap",
+                    "popper.js",
+                    "react-bootstrap",
+                    "react-datepicker",
+                    "react-responsive-modal",
+                    "react-bootstrap-time-picker"
                 ]
             },
             output: {
@@ -30,6 +37,12 @@ module.exports = (env) => {
                 path: __dirname + "/../../WebTech-Website-Deploy/WebTech-Webapp-Deploy/dist"
             },
             plugins: [
+                new Webpack.ProvidePlugin({
+                    "window.jQuery": "jquery", //For bootstrap
+                    $: "jquery",
+                    jQuery: "jquery",
+                    Popper: ["popper.js", "default"]
+                }),
                 new ExtractTextPlugin("css/[name].[chunkhash].css"),
                 new CopyWebpackPlugin([
                     {

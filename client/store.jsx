@@ -6,6 +6,11 @@ import promise from "redux-promise-middleware";
 
 import reducer from "./reducers";
 
-const middleware = applyMiddleware(promise(), thunk, createLogger());
+var middleware;
 
+if (location.hostname === "localhost") {
+    middleware = applyMiddleware(promise(), thunk, createLogger());
+} else {
+    middleware = applyMiddleware(promise(), thunk);
+}
 export default createStore(reducer, middleware);

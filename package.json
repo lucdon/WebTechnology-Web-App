@@ -15,6 +15,9 @@
         "build-dev": "webpack --config webpack/webpack.config.js --env.NODE_ENV=development"
     },
     "dependencies": {
+        "popper.js": "1.12.9",
+        "bootstrap": "4.0.0-beta.2",
+        "jquery": "3.2.1",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
         "react-redux": "^5.0.6",
@@ -24,7 +27,11 @@
         "redux": "^3.7.2",
         "redux-thunk": "^2.2.0",
         "redux-logger": "^3.0.6",
-        "redux-promise-middleware": "^5.0.0"
+        "redux-promise-middleware": "^5.0.0",
+        "react-bootstrap": "0.31.5",
+        "react-datepicker": "0.61.0",
+        "react-responsive-modal": "2.0.0",
+        "react-bootstrap-time-picker": "1.0.3"
     }, 
     "devDependencies": {
         "webpack": "^3.10.0",

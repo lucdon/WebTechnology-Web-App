@@ -1,0 +1,16 @@
+.ftr {
+    z-index: 1030;
+    background-color: #151b26;
+    position: fixed;
+    width: 100%;
+    padding: .5rem 1rem;
+    bottom: 0;
+
+    .text {
+        font-size: 1.25rem;
+        line-height: inherit;
+        padding-top: .3125rem;
+        padding-bottom: .3125rem;
+        color: white;
+    }
+}

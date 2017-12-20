@@ -1,5 +1,4 @@
-import * as UserActions from "./UserActions.jsx";
+import * as AuthActions from "./AuthActions.jsx";
+import * as TaskActions from "./TaskActions.jsx";
 
-export {
-    UserActions
-} 
+export {AuthActions, TaskActions}

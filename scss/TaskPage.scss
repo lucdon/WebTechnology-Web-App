@@ -1,0 +1,14 @@
+.page {
+    position: relative;
+
+    min-width: 85vw;
+    min-height: 85vh;
+    width: 100%;
+    height: 90%;
+
+    .span-page {
+        min-height: 85vh;
+        width: 100%;
+        height: 90%;
+    }
+}

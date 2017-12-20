@@ -1,0 +1,19 @@
+.home-page {
+    position: relative;
+    .home-page-img { 
+        img{
+            min-width: 100vw;
+            max-width: 100vw;
+            max-height: 90vh;
+            min-height: 90vh;
+        }
+    }
+
+    .home-page-title {
+        position: fixed;
+        font-size: 5vw;
+        margin: 0 !important;
+        left: 30vw;
+        top: 25vh;
+    }
+}

@@ -26,7 +26,14 @@ module.exports = (env) => {
                     "redux",
                     "redux-thunk",
                     "redux-logger",
-                    "redux-promise-middleware"
+                    "redux-promise-middleware",
+                    "jquery",
+                    "bootstrap",
+                    "popper.js",
+                    "react-bootstrap",
+                    "react-datepicker",
+                    "react-responsive-modal",
+                    "react-bootstrap-time-picker"
                 ]
             },
             output: {
@@ -42,6 +49,12 @@ module.exports = (env) => {
                         to: "favicon.ico"
                     }
                 ]),
+                new Webpack.ProvidePlugin({
+                    "window.jQuery": "jquery", //For bootstrap
+                    $: "jquery",
+                    jQuery: "jquery",
+                    Popper: ["popper.js", "default"]
+                }),
                 new Webpack.HashedModuleIdsPlugin(),
                 new Webpack.optimize.CommonsChunkPlugin({name: 'vendor'}),
                 new Webpack.optimize.CommonsChunkPlugin({name: "manifest"}),

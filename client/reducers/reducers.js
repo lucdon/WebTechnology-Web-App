@@ -1,5 +1,6 @@
-import { combineReducers } from "redux";
+import {combineReducers} from "redux";
 
-import user from "./UserReducer.jsx";
+import task from "./TaskReducer.jsx";
+import auth from "./AuthReducer.jsx";
 
-export default combineReducers({user});
+export default combineReducers({task, auth});

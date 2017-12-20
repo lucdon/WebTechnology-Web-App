@@ -1,18 +1,20 @@
+import Moment from "moment";
+
 export default function reducer(state = {
     error: null,
     fetched: false,
     fetching: false,
-    user: []
+    tasks: []
 }, action) {
     switch (action.type) {
-        case "FETCH_USER":
+        case "GET_PENDING":
             {
                 return {
                     ...state,
                     fetching: true
                 }
             }
-        case "FETCH_USER_REJECTED":
+        case "GET_REJECTED":
             {
                 return {
                     ...state,
@@ -20,13 +22,18 @@ export default function reducer(state = {
                     fetching: false
                 }
             }
-        case "FETCH_USER_FULFILLED":
+        case "GET_FULFILLED":
             {
+                const tasks = action.payload.data;
+                for(var i =0; i < tasks.length; i++){
+                    tasks[i].startDate = Moment.unix(tasks[i].startDate / 1000.0);
+                    tasks[i].endDate = Moment.unix(tasks[i].endDate / 1000.0);
+                }
                 return {
                     ...state,
                     fetched: true,
                     fetching: false,
-                    user: action.payload.data
+                    tasks: tasks
                 }
             }
     }
