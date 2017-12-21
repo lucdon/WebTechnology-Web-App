@@ -48,14 +48,32 @@ export default class About extends React.Component {
                     <p>Returns a single string with the error</p>
                 </div>
                 <div class="container">
-                    <h4>Getting user specific tasks</h4>
+                    <h4>Getting the tasks of a user</h4>
                     <pre>
                         <code> {Address + "api/tasks/:username"} </code>
                     </pre>
                     <h5>Parameter</h5>
                     <p>The API call has 1 parameter: username, which is the name of the user</p>
                     <h5>Succes</h5>
-                    <p>It returns a json array with element one being the username and element 2 being the array of user defined tasks</p>
+                    <p>It returns a json array of user defined tasks</p>
+                    <h5>Error</h5>
+                    <p>Returns a single string with the error</p>
+                </div>
+                <div class="container">
+                    <h4>Getting one task of a user</h4>
+                    <pre>
+                        <code> {Address + "api/tasks/:username/:id"} </code>
+                    </pre>
+                    <h5>Parameter</h5>
+                    <p>
+                        The API call has 2 parameter:
+                        <br />
+                        username, which is the name of the user
+                        <br />
+                        id, which is the task id
+                    </p>
+                    <h5>Succes</h5>
+                    <p>It returns a json array of user defined tasks</p>
                     <h5>Error</h5>
                     <p>Returns a single string with the error</p>
                 </div>
