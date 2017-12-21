@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation from "client";
+import {Navigation} from "client";
 import Modal from 'react-responsive-modal';
 import TaskCreate from "TaskCreate";
 
