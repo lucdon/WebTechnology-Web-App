@@ -34,7 +34,7 @@ module.exports = (env) => {
             },
             output: {
                 filename: "js/[name].[chunkhash].js",
-                path: __dirname + "/../../WebTech-Website-Deploy/WebTech-Webapp-Deploy/dist"
+                path: __dirname + "/../../WebTech-Website-Deploy/WebTech-Webapp-Deploy/"
             },
             plugins: [
                 new Webpack.ProvidePlugin({
@@ -47,21 +47,23 @@ module.exports = (env) => {
                 new CopyWebpackPlugin([
                     {
                         from: "wwwroot/favicon.ico",
-                        to: "../favicon.ico"
+                        to: "favicon.ico"
                     }
                 ]),
+                new Webpack.EnvironmentPlugin({
+                    NODE_ENV: 'production',
+                    }),
                 new Webpack.HashedModuleIdsPlugin(),
                 new Webpack.optimize.CommonsChunkPlugin({name: 'vendor'}),
                 new Webpack.optimize.CommonsChunkPlugin({name: "manifest"}),
-                new CleanWebpackPlugin(["dist"], {root: "D:/User Files/Documents/Projects/Coding/Web JS/WebTech-Website-Deploy/WebTech-Webapp-Deploy"}),
                 new CopyWebpackPlugin([
                     {
                         from: "wwwroot/404.html",
-                        to: "../404.html"
+                        to: "404.html"
                     }
                 ]),
                 new MinifyPlugin(),
-                new HtmlWebpackPlugin({template: "wwwroot/index.html", filename: '../index.html'})
+                new HtmlWebpackPlugin({template: "wwwroot/index.html", filename: 'index.html'})
             ],
             stats: {
                 children: false
