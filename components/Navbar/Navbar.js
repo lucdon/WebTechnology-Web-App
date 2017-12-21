@@ -3,7 +3,7 @@ import {NavLink, Link} from "react-router-dom";
 import Modal from "react-responsive-modal";
 import {connect} from "react-redux";
 
-import Navigation from "client";
+import {Navigation} from "client";
 import AccountModal from "AccountModal";
 import {AuthActions} from "actions";
 
@@ -70,10 +70,15 @@ export default class Navbar extends React.Component {
                                 </NavLink >
                             </li>
                             <li class="nav-item">
+                                <NavLink className="nav-link" to={Navigation + "API"}>
+                                    API
+                                </NavLink >
+                            </li>
+                            <li class="nav-item">
                                 <NavLink className="nav-link" to={Navigation + "about"}>
                                     About
                                 </NavLink >
-                            </li>
+                            </li>                          
                         </ul>
 
                         {isLogin ? <button type="button" class="btn btn-primary" onClick={this.logout.bind(this)}>Logout</button> : <button type="button" class="btn btn-primary" onClick={this.openLogin.bind(this)}>

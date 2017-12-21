@@ -10,14 +10,17 @@ import store from "./store.jsx";
 const app = document.getElementById('app');
 
 var Navigation;
+var Address;
 
 if (location.hostname === "localhost") {
     Navigation = "/";
+    Address = "http://localhost:57028/";
 } else {
     Navigation = location.pathname;
+    Address = "http://84.105.96.2/";
 }
 
-export default Navigation;
+export {Address, Navigation};
 
 ReactDOM.render(
     <Provider store={store}>

@@ -1,12 +1,10 @@
 import axios from "axios";
 import store from "./../store.jsx";
-
-const address = "http://localhost:57028/";
-//const address = "http://84.105.96.2/";
+import {Address} from "client";
 
 export function createAccount(name, pwd) {
     return {
-        payload: axios.post(address + "auth/createAccount", {
+        payload: axios.post(Address + "auth/createAccount", {
             password: pwd,
             username: name
         }, {
@@ -20,7 +18,7 @@ export function createAccount(name, pwd) {
 
 export function login(name, pwd) {
     return {
-        payload: axios.post(address + "auth/login", {
+        payload: axios.post(Address + "auth/login", {
             password: pwd,
             username: name
         }, {
@@ -34,7 +32,7 @@ export function login(name, pwd) {
 
 export function logout(id) {
     return {
-        payload: axios.post(address + "auth/logout", "\"" + id + "\"", {
+        payload: axios.post(Address + "auth/logout", "\"" + id + "\"", {
             headers: {
                 "Content-Type": "application/json"
             }

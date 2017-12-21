@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation from "client";
+import {Navigation} from "client";
 
 export default class Home extends React.Component {
 

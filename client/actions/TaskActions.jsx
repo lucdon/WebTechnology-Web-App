@@ -1,12 +1,10 @@
 import axios from "axios";
-
-const address = "http://localhost:57028/";
-//const address = "http://84.105.96.2/";
+import {Address} from "client";
 
 export function updateTask(id, token, info) {
     return dispatch => {
         dispatch({
-            payload: axios.post(address + "tasks/updateTask?id=" + id + "&token=" + token, {
+            payload: axios.post(Address + "tasks/updateTask?id=" + id + "&token=" + token, {
                 description: info.description,
                 endDate: info.endDate,
                 id: info.id,
@@ -27,7 +25,7 @@ export function updateTask(id, token, info) {
 export function createTask(id, token, info) {
     return dispatch => {
         dispatch({
-            payload: axios.put(address + "tasks/createTask?id=" + id + "&token=" + token, {
+            payload: axios.put(Address + "tasks/createTask?id=" + id + "&token=" + token, {
                 description: info.description,
                 endDate: info.endDate,
                 id: info.id,
@@ -48,7 +46,7 @@ export function createTask(id, token, info) {
 export function deleteTask(id, token, taskid) {
     return dispatch => {
         dispatch({
-            payload: axios.delete(address + "tasks/deleteTask/" + taskid + "?id=" + id + "&token=" + token, {}, {
+            payload: axios.delete(Address + "tasks/deleteTask/" + taskid + "?id=" + id + "&token=" + token, {}, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -62,7 +60,7 @@ export function deleteTask(id, token, taskid) {
 
 export function getTasks(id, token) {
     return {
-        payload: axios.get(address + "tasks/get?id=" + id + "&token=" + token, {}, {
+        payload: axios.get(Address + "tasks/get?id=" + id + "&token=" + token, {}, {
             headers: {
                 "Content-Type": "application/json"
             }

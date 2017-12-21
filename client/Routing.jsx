@@ -1,10 +1,11 @@
 import React from "react";
 import {BrowserRouter, Route} from "react-router-dom";
-import Navigation from "client";
+import {Navigation} from "client";
 
 import Navbar from "Navbar";
 import Home from "Home";
 import About from "About";
+import API from "API";
 import PlanTool from "PlanTool";
 import Footer from "Footer";
 
@@ -22,6 +23,7 @@ export default class Routing extends React.Component {
                         <Route path={Navigation} component={Navbar}></Route>
                         <Route exact path={Navigation} component={Home}></Route>
                         <Route path={Navigation + "about"} component={About}></Route>
+                        <Route path={Navigation + "API"} component={API}></Route>
                         <Route path={Navigation + "plantool"} component={PlanTool}></Route>
                         <Route path={Navigation} component={Footer}></Route>
                     </div>
