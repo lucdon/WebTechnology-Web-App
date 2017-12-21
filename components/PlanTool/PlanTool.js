@@ -2,7 +2,7 @@ import React from "react";
 import {Redirect} from "react-router-dom";
 import Modal from "react-responsive-modal";
 
-import Navigation from "client";
+import {Navigation} from "client";
 import AccountModal from "AccountModal";
 
 import {connect} from "react-redux"

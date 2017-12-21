@@ -36,7 +36,7 @@ export default class About extends React.Component {
                         <code> {Address + "api/users/:username"} </code>
                     </pre>
                     <h5>Parameter</h5>
-                    <p>The API call has 1 parameter username, which is the name of the user</p>
+                    <p>The API call has 1 parameter: username, which is the name of the user</p>
                     <h5>Succes</h5>
                     <p>It returns a json array with all users which exist of:</p>
                     <ul>
@@ -53,7 +53,7 @@ export default class About extends React.Component {
                         <code> {Address + "api/tasks/:username"} </code>
                     </pre>
                     <h5>Parameter</h5>
-                    <p>The API call has 1 parameter username, which is the name of the user</p>
+                    <p>The API call has 1 parameter: username, which is the name of the user</p>
                     <h5>Succes</h5>
                     <p>It returns a json array with element one being the username and element 2 being the array of user defined tasks</p>
                     <h5>Error</h5>
