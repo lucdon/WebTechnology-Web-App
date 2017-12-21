@@ -17,7 +17,7 @@ if (location.hostname === "localhost") {
     Address = "http://localhost:57028/";
 } else {
     Navigation = location.pathname;
-    Address = "https://84.105.96.2/";
+    Address = "https://www.lucstudent.nl/";
 }
 
 export {Address, Navigation};
