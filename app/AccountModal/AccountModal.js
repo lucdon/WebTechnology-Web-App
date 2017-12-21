@@ -9,7 +9,7 @@ const passwordPattern = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8
 @connect((store) => {
     return {auth: store.auth};
 })
-export default class Navbar extends React.Component {
+export default class AccountModal extends React.Component {
     constructor(props) {
         super(props);
 

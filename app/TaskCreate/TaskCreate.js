@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import TimePicker from 'react-bootstrap-time-picker';
 import Moment, {min} from 'moment';
 
-import TaskActions from "actions";
+import {TaskActions} from "actions";
 
 export default class TaskCreate extends React.Component {
 
@@ -132,7 +132,15 @@ export default class TaskCreate extends React.Component {
         this.state.endDate.seconds(0);
         this.state.endDate.milliseconds(0);
 
-        TaskActions.createTask(new Task(name, description, Moment.min(this.state.startDate, this.state.endDate), Moment.max(this.state.endDate, this.state.startDate)));
+        const info = {
+            description: description,
+            endDate: Moment.max(this.state.endDate, this.state.startDate).unix(),
+            id: 0,
+            startDate: Moment.min(this.state.startDate, this.state.endDate).unix(),
+            title: name
+        };
+
+        this.props.dispatch(TaskActions.createTask(this.props.auth.id, this.props.auth.token, info));
         this.props.callback();
     }
 

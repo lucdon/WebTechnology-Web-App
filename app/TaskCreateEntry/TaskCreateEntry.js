@@ -30,7 +30,13 @@ export default class TaskCreateEntry extends React.Component {
                 <span class="add-img" onClick={this.createTaskOpen.bind(this)}>
                     <img src={Navigation + "images/Button-Plus.png"} />
                     <Modal open={this.state.openCreateMode} onClose={this.createTaskClose.bind(this)} little animationDuration={100}>
-                        <TaskCreate callback={this.createTaskClose.bind(this)} />
+                        <TaskCreate
+                            auth={{
+                            id: this.props.auth.id,
+                            token: this.props.auth.token
+                        }}
+                            dispatch={this.props.dispatch}
+                            callback={this.createTaskClose.bind(this)} />
                     </Modal>
                 </span>
             </div>

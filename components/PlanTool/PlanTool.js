@@ -3,7 +3,7 @@ import {Redirect} from "react-router-dom";
 import Modal from "react-responsive-modal";
 
 import Navigation from "client";
-import LoginModal from "LoginModal";
+import AccountModal from "AccountModal";
 
 import {connect} from "react-redux"
 
@@ -43,7 +43,7 @@ export default class PlanTool extends React.Component {
                 return (
                     <div>
                         <Modal open={this.state.openLogin} onClose={this.closeLogin.bind(this)} little animationDuration={100}>
-                            <LoginModal cancel={this.closeLogin.bind(this)} />
+                            <AccountModal cancel={this.closeLogin.bind(this)} />
                         </Modal>
                     </div>
                 );

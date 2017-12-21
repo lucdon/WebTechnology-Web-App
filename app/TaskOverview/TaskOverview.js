@@ -22,13 +22,25 @@ export default class TaskOverview extends React.Component {
         var rows = [];
 
         for (var i = 0; i < this.props.tasks.length; i++) {
-            rows.push(<TaskEntry task={this.props.tasks[i]} key={this.props.tasks[i].id} />);
+            rows.push(<TaskEntry
+                dispatch={this.props.dispatch}
+                task={this.props.tasks[i]}
+                auth={{
+                id: this.props.auth.id,
+                token: this.props.auth.token
+            }}
+                key={this.props.tasks[i].id} />);
         }
-        
+
         return (
             <div>
                 <div class="task-container row">
-                    <TaskCreateEntry /> {rows}
+                    <TaskCreateEntry
+                        auth={{
+                        id: this.props.auth.id,
+                        token: this.props.auth.token
+                    }}
+                        dispatch={this.props.dispatch} /> {rows}
                 </div>
             </div>
         );

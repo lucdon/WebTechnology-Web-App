@@ -3,9 +3,9 @@ import DatePicker from 'react-datepicker';
 import TimePicker from 'react-bootstrap-time-picker';
 import Moment, {min} from 'moment';
 
-import TaskActions from "actions";
+import {TaskActions} from "actions";
 
-export default class TaskCreate extends React.Component {
+export default class TaskEdit extends React.Component {
 
     constructor(props) {
         super(props);
@@ -107,24 +107,16 @@ export default class TaskCreate extends React.Component {
             start.minutes(mins);
             return start.format("HH:mm");
         } else if (start.isBefore(end)) {
-            end.seconds(0);
-            end.minutes(0);
-            end.hours(0);
             return "0:00";
         } else {
             var mins = start.minutes();
             mins -= mins % 15;
             start.minutes(mins);
-            end.dayOfYear(start.dayOfYear());
-            end.year(start.year());
-            end.hours(start.hours());
-            end.seconds(start.seconds());
-            end.minutes(mins);
             return start.format("HH:mm");
         }
     }
 
-    createTaskClick(e) {
+    updateTaskClick(e) {
         var description = this.state.taskDescription;
         var name = this.state.taskName;
 
@@ -140,11 +132,15 @@ export default class TaskCreate extends React.Component {
         this.state.endDate.seconds(0);
         this.state.endDate.milliseconds(0);
 
-        TaskActions.changeTaskName(this.props.task.id, name);
-        TaskActions.changeTaskDescription(this.props.task.id, description);
-        TaskActions.changeTaskStartTime(this.props.task.id, this.state.startDate);
-        TaskActions.changeTaskEndTime(this.props.task.id, this.state.endDate);
+        const info = {
+            description: description,
+            endDate: Moment.max(this.state.endDate, this.state.startDate).unix(),
+            id: this.props.task.id,
+            startDate: Moment.min(this.state.startDate, this.state.endDate).unix(),
+            title: name
+        };
 
+        this.props.dispatch(TaskActions.updateTask(this.props.auth.id, this.props.auth.token, info));
         this.props.callback();
     }
 
@@ -207,7 +203,7 @@ export default class TaskCreate extends React.Component {
                         </div>
                     </div>
 
-                    <button onClick={this.createTaskClick.bind(this)} class="btn btn-success spacing">Update Task</button>
+                    <button onClick={this.updateTaskClick.bind(this)} class="btn btn-success spacing">Update Task</button>
                     <button onClick={this.cancelTaskClick.bind(this)} class="btn btn-danger spacing">Cancel</button>
                 </div>
             </div>

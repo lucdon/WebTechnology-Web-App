@@ -4,7 +4,7 @@ import Modal from "react-responsive-modal";
 import {connect} from "react-redux";
 
 import Navigation from "client";
-import LoginModal from "LoginModal";
+import AccountModal from "AccountModal";
 import {AuthActions} from "actions";
 
 @connect((store) => {
@@ -79,7 +79,7 @@ export default class Navbar extends React.Component {
                         {isLogin ? <button type="button" class="btn btn-primary" onClick={this.logout.bind(this)}>Logout</button> : <button type="button" class="btn btn-primary" onClick={this.openLogin.bind(this)}>
                             Login
                             <Modal open={this.state.openLogin} onClose={this.closeLogin.bind(this)} little animationDuration={100}>
-                                <LoginModal cancel={this.closeLogin.bind(this)} />
+                                <AccountModal cancel={this.closeLogin.bind(this)} />
                             </Modal>
                         </button>}
                     </div>

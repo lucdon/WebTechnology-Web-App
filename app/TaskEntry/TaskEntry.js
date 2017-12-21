@@ -3,7 +3,7 @@ import React from "react";
 import TaskEdit from "TaskEdit";
 import Modal from 'react-responsive-modal';
 import Moment from "moment";
-import TaskActions from "actions";
+import {TaskActions} from "actions";
 
 export default class TaskEntry extends React.Component {
 
@@ -40,16 +40,18 @@ export default class TaskEntry extends React.Component {
         this.interval = setInterval(this.tick, Math.max(diff / 100, 1000)); // only change by 1% diffrence
     }
 
+    componentWillUpdate() {
+        setTimeout(() => {
+            this.updateProgressPercentage();
+        }, 200);
+    }
+
     componentWillUnmount() {
         clearInterval(this.interval);
     }
 
-    toggleCompleted() {
-        TaskActions.toggleComplete(this.props.task.id);
-    }
-
     deleteTask() {
-        TaskActions.deleteTask(this.props.task.id);
+        this.props.dispatch(TaskActions.deleteTask(this.props.auth.id, this.props.auth.token, this.props.task.id));
     }
 
     updateProgressPercentage() {
@@ -61,6 +63,8 @@ export default class TaskEntry extends React.Component {
             this.setState({percentageComplete: 100});
             return;
         }
+           
+        this.props.task.complete = false;
 
         if (now.isBefore(start)) {
             this.setState({percentageComplete: 0});
@@ -107,7 +111,14 @@ export default class TaskEntry extends React.Component {
                         <button class="btn btn-primary btn-edit" onClick={this.editTaskOpen.bind(this)}>
                             Edit Task
                             <Modal open={this.state.openEditMode} onClose={this.editTaskClose.bind(this)} little animationDuration={100}>
-                                <TaskEdit task={task} callback={this.editTaskClose.bind(this)} />
+                                <TaskEdit
+                                    auth={{
+                                    id: this.props.auth.id,
+                                    token: this.props.auth.token
+                                }}
+                                    dispatch={this.props.dispatch}
+                                    task={task}
+                                    callback={this.editTaskClose.bind(this)} />
                             </Modal>
                         </button>
                         <button class="btn btn-danger  btn-delete" onClick={this.deleteTask.bind(this)}>Delete Task</button>
